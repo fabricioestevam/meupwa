@@ -3,27 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>Meu PWA</title>
+  <meta name="theme-color" content="#6200ee" />
+  <title>Meu Aplicativo</title>
+
+  <!-- Ícone e Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <img src="img/exemplo.jpg" alt="Exemplo de imagem do app" width="100" />
+  <main>
+    <img src="/icons/icon-192x192.png" alt="Logo" style="width: 100px;" />
+    <h1>Meu Aplicativo</h1>
 
-  <h1>Meu Aplicativo</h1>
+    <ul>
+      <li><a href="mailto:exemplo@email.com">Enviar e-mail</a></li>
+      <li><a href="tel:+550000000000">Ligar agora</a></li>
+      <li><a href="sms:+550000000000">Enviar SMS</a></li>
+    </ul>
+  </main>
 
-  <a href="mailto:exemplo@email.com">Enviar e-mail</a><br />
-  <a href="tel:+5511999999999">Ligar agora</a><br />
-  <a href="sms:+5511999999999">Enviar SMS</a>
-
-  <script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="/script.js"></script>
   <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("service-worker.js")
-        .then((reg) => console.log("Service Worker registrado com sucesso!", reg))
-        .catch((err) => console.log("Erro ao registrar o Service Worker:", err));
+    // Registro do Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/service-worker.js')
+          .then(reg => {
+            console.log('Service Worker registrado com sucesso!', reg);
+          })
+          .catch(err => {
+            console.log('Erro ao registrar o Service Worker:', err);
+          });
+      });
     }
   </script>
 </body>

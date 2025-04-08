@@ -41,17 +41,14 @@ self.addEventListener('activate', event => {
 
 // Intercepta requisições e responde do cache ou da internet
 self.addEventListener('fetch', event => {
-  console.log('[Service Worker] Fetch interceptado para:', event.request.url);
+  console.log('[Service Worker] Interceptando requisição:', event.request.url);
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Se achou no cache, retorna
         if (response) {
-          return response;
+          return response; // Serve do cache
         }
-
-        // Senão, tenta buscar da internet
-        return fetch(event.request);
+        return fetch(event.request); // Busca online
       })
   );
 });
